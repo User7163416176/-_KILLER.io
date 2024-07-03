@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭВМ KILLER Калькулятор</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main-menu" class="menu">
+        <h1>ЭВМ KILLER</h1>
+        <button onclick="showCalculator()">Калькулятор преобразования двоичного числа в двоично-дополнительный код</button>
+        <button onclick="showBaseConverter()">Перевод из одной системы исчисления в другую</button>
+        <button onclick="showSumChecker()">Проверить сложение двух шестнадцатиразрядных двоичных чисел</button>
+        <button onclick="showOctalComplementCalculator()">Образовать восьмеричное представление эквивалентного числа с противоположным знаком</button>
+        <button onclick="showArithmeticCalculator()">Арифметические операции с числами в разных системах счисления</button>
+        <button onclick="showOverflowChecker()">Проверка на переполнение двоичных чисел</button>
+        <button onclick="showCarryChecker()">Определить, есть ли перенос в старший разряд и из него</button>
+    </div>
+    
+    <!-- Binary to Two's Complement Calculator -->
+    <div id="calculator" class="menu">
+        <h2>Калькулятор преобразования двоичного числа в двоично-дополнительный код</h2>
+        <label for="binary-input">Введите двоичное число из 16 символов:</label>
+        <input type="text" id="binary-input">
+        <button onclick="convertBinaryToTwosComplement()">Преобразовать</button>
+        <p id="binary-result">Двоично-дополнительный код: </p>
+        <button onclick="copyToClipboard('binary-result')">Копировать</button>
+        <button onclick="showMainMenu()">Назад</button>
+    </div>
+
+    <!-- Base Converter -->
+    <div id="base-converter" class="menu">
+        <h2>Перевод из одной системы исчисления в другую</h2>
+        <label for="number-input">Введите число:</label>
+        <input type="text" id="number-input">
+        <label for="from-base">Из системы счисления:</label>
+        <input type="number" id="from-base" min="2" max="36" value="10">
+        <label for="to-base">В систему счисления:</label>
+        <input type="number" id="to-base" min="2" max="36" value="2">
+        <button onclick="convertBase()">Преобразовать</button>
+        <p id="conversion-result">Результат: </p>
+        <button onclick="copyToClipboard('conversion-result')">Копировать</button>
+        <button onclick="showMainMenu()">Назад</button>
+    </div>
+
+    <!-- Sum Checker -->
+    <div id="sum-checker" class="menu">
+        <h2>Проверить сложение двух шестнадцатиразрядных двоичных чисел</h2>
+        <label for="binary1-input">Введите первое двоичное число из 16 символов:</label>
+        <input type="text" id="binary1-input">
+        <label for="binary2-input">Введите второе двоичное число из 16 символов:</label>
+        <input type="text" id="binary2-input">
+        <label for="signed-input">Считать числа знаковыми:</label>
+        <input type="checkbox" id="signed-input">
+        <button onclick="checkSum()">Проверить сумму</button>
+        <p id="sum-result">Результат: </p>
+        <button onclick="showMainMenu()">Назад</button>
+    </div>
+
+    <!-- Octal Complement Calculator -->
+    <div id="octal-complement-calculator" class="menu">
+        <h2>Образовать восьмеричное представление эквивалентного числа с противоположным знаком</h2>
+        <label for="octal-input">Введите восьмеричное число:</label>
+        <input type="text" id="octal-input">
+        <button onclick="convertOctalToTwosComplement()">Преобразовать</button>
+        <p id="octal-result">Результат: </p>
+        <button onclick="copyToClipboard('octal-result')">Копировать</button>
+        <button onclick="showMainMenu()">Назад</button>
+    </div>
+
+    <!-- Arithmetic Calculator -->
+    <div id="arithmetic-calculator" class="menu">
+        <h2>Арифметические операции с числами в разных системах счисления</h2>
+        <label for="num1-input">Первое число:</label>
+        <input type="text" id="num1-input">
+        <label for="from-base1">Система счисления первого числа:</label>
+        <input type="number" id="from-base1" min="2" max="36" value="10">
+        <label for="num2-input">Второе число:</label>
+        <input type="text" id="num2-input">
+        <label for="from-base2">Система счисления второго числа:</label>
+        <input type="number" id="from-base2" min="2" max="36" value="10">
+        <label for="operation">Операция:</label>
+        <select id="operation">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <label for="to-base-result">Система счисления результата:</label>
+        <input type="number" id="to-base-result" min="2" max="36" value="10">
+        <button onclick="performArithmeticOperation()">Получить результат</button>
+        <p id="arithmetic-result">Результат: </p>
+        <button onclick="copyToClipboard('arithmetic-result')">Копировать</button>
+        <button onclick="showMainMenu()">Назад</button>
+    </div>
+
+    <!-- Overflow Checker -->
+    <div id="overflow-checker" class="menu">
+        <h2>Проверка на переполнение двоичных чисел</h2>
+        <label for="overflow-bin1-input">Введите первое двоичное число из 16 символов:</label>
+        <input type="text" id="overflow-bin1-input">
+        <label for="overflow-bin2-input">Введите второе двоичное число из 16 символов:</label>
+        <input type="text" id="overflow-bin2-input">
+        <button onclick="checkOverflow()">Получить результат</button>
+        <p id="overflow-result">Результат: </p>
+        <button onclick="showMainMenu()">Назад</button>
+    </div>
+
+    <!-- Carry Checker -->
+    <div id="carry-checker" class="menu">
+        <h2>Определить, есть ли перенос в старший разряд и из него</h2>
+        <label for="carry-bin1-input">Введите первое двоичное число из 16 символов:</label>
+        <input type="text" id="carry-bin1-input">
+        <label for="carry-bin2-input">Введите второе двоичное число из 16 символов:</label>
+        <input type="text" id="carry-bin2-input">
+        <label for="carry-mode">Режим:</label>
+        <select id="carry-mode">
+            <option value="in">Из старшего разряда</option>
+            <option value="out">В старший разряд</option>
+        </select>
+        <button onclick="checkCarry()">Получить результат</button>
+        <p id="carry-result">Результат: </p>
+        <button onclick="showMainMenu()">Назад</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
