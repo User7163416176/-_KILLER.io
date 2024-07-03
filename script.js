@@ -66,15 +66,30 @@ function convertBase() {
     const toBase = parseInt(document.getElementById('to-base').value);
     
     try {
-        const decimal = parseInt(number, fromBase);
-        let result = decimal.toString(toBase).toUpperCase();
-        
-        // Adding leading zeros for binary conversion
-        if (toBase === 2) {
-            const desiredLength = Math.ceil(result.length / 3) * 3;
-            result = result.padStart(desiredLength, '0');
+        let decimal = parseInt(number, fromBase);
+
+        let leadingZeros = "";
+        for (let i = 0; i < number.length; i++) {
+            if (number[i] !== '0') break;
+            leadingZeros += "0";
         }
-        
+
+        let result = decimal.toString(toBase).toUpperCase();
+
+        if (toBase === 2) {
+            result = leadingZeros + result;
+            const desiredLength = Math.ceil(result.length / 4) * 4;
+            result = result.padStart(desiredLength, '0');
+
+            // Обрезка до 16 символов
+            if (result.length > 16) {
+                result = result.slice(-16);
+                alert("Результат был обрезан до 16 символов.");
+            }
+        } else if (toBase === 8 || toBase === 16) {
+            result = leadingZeros + result;
+        }
+
         document.getElementById('conversion-result').innerText = `Результат: ${result}`;
     } catch (error) {
         alert("Некорректное число для системы счисления " + fromBase + ".");
