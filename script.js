@@ -64,9 +64,17 @@ function convertBase() {
     const number = document.getElementById('number-input').value;
     const fromBase = parseInt(document.getElementById('from-base').value);
     const toBase = parseInt(document.getElementById('to-base').value);
+    
     try {
         const decimal = parseInt(number, fromBase);
-        const result = decimal.toString(toBase).toUpperCase();
+        let result = decimal.toString(toBase).toUpperCase();
+        
+        // Adding leading zeros for binary conversion
+        if (toBase === 2) {
+            const desiredLength = Math.ceil(result.length / 3) * 3;
+            result = result.padStart(desiredLength, '0');
+        }
+        
         document.getElementById('conversion-result').innerText = `Результат: ${result}`;
     } catch (error) {
         alert("Некорректное число для системы счисления " + fromBase + ".");
