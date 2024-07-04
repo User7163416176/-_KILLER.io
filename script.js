@@ -126,7 +126,7 @@ function checkSum() {
     }
 
     const resultBinary = result.toString(2).padStart(16, '0');
-    document.getElementById('sum-result').innerText = overflow ? "Результат: Неправильный (переполнение)" : `Результат: ${resultBinary}`;
+    document.getElementById('sum-result').innerText = overflow ? "Результат: Неправильный (переполнение)" : "Результат: Правильный";
 }
 
 function convertOctalToTwosComplement() {
